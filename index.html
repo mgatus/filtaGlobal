@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+  .button {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    position: relative;
+    cursor: pointer;
+    justify-content: center;
+    /* button */
+    /* bg button */
+  }
+  .button .link {
+    font-family: "Rubik", sans-serif;
+    background-color: transparent;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #4c6082;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    border: 0;
+    padding-left: 20px;
+    left: 0;
+    line-height: auto;
+    overflow: hidden;
+    /*line*/
+    /*arrow*/
+  }
+  .button .link:before {
+    content: "";
+    background-color: #f38181;
+    width: 2.5px;
+    height: 100%;
+    position: absolute;
+    z-index: 2;
+    left: 0px;
+    top: -1px;
+    border-radius: 50px;
+    transition: all 0.3s ease-in-out;
+  }
+  .button .link:after {
+    content: "";
+    width: 15px;
+    height: 15px;
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    position: absolute;
+    border: solid 3px #f38181;
+    border-left: 0;
+    border-bottom: 0;
+    top: calc(50% - 9px);
+    border-radius: 2px;
+    transform: translateX(-42px) rotate(45deg);
+    transition: all 0.3s 0.2s ease-in-out;
+  }
+  .button:before {
+    content: "";
+    background-color: white;
+    width: 0;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0px;
+    border-radius: 3px;
+    transition: all 0.4s 0.3s ease-in-out;
+  }
+  .button:hover:before {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    bottom: 0px;
+  }
+  .button:hover .link {
+    padding-left: 50px;
+  }
+  .button:hover .link:before {
+    left: 17px;
+    transform: rotate(90deg);
+  }
+  .button:hover .link:after {
+    transform: translate(-37px) rotate(45deg);
+  }
+  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+  <div id="app">
+
+  <section class="w-full mx-auto bg-nordic-gray-light flex pt-12 md:pt-0 md:items-center bg-center bg-cover lg:bg-[url('./assets/img/banner.jpg')] md:bg-[url('./assets/img/banner-mobile.jpg')] bg-[url('./assets/img/banner-mobile.jpg')]"
+    style="max-width:1600px; height: 32rem;">
+    <div class="container mx-auto">
+      <div class="flex flex-col w-full lg:w-full justify-center items-center  px-6 tracking-wide text-center">
+        <h1 class="text-white text-center text-3xl my-4 font-black">{{ heading }}</h1>
+        <small class="text-xl inline-block text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi debitis, accusantium laboriosam laborum sint mollitia.</small>
+      </div>
+    </div>
+  </section>
+
+  <section class="w-full bg-white py-8">
+  
+    <div class="container mx-auto flex items-center justify-center flex-wrap pt-4 pb-12 gap-8">  
+      
+      <div class="w-full md:w-1/3 xl:w-1/3 p-5 max-w-[300px] flex flex-col border border-solid border-[#EBEBEB] rounded-md">
+          <img class="hover:grow hover:shadow-lg"
+            src="./assets/img/one.jpg">
+          <div class="pt-3 flex items-center justify-between text-center">
+            <p class="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore sit facilis id repellendus doloremque quos, cum, inventore optio totam voluptas dicta, soluta sed ipsum quas consequatur similique</p>
+          </div>
+          <div class="button mt-6">
+            <a class="link uppercase tracking-[.10em] font-medium text-sm"
+              href="#">Read More</a>
+          </div>
+          
+      </div>
+
+      <div class="w-full md:w-1/3 xl:w-1/3 p-5 max-w-[300px] flex flex-col border border-solid border-[#EBEBEB] rounded-md">
+        <img class="hover:grow hover:shadow-lg" src="./assets/img/two.jpg">
+        <div class="pt-3 flex items-center justify-between text-center">
+          <p class="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore sit facilis id repellendus doloremque
+            quos, cum, inventore optio totam voluptas dicta, soluta sed ipsum quas consequatur similique</p>
+        </div>
+        <div class="button mt-6">
+          <a class="link uppercase tracking-[.10em] font-medium text-sm" href="#">Read More</a>
+        </div>
+      </div>
+
+      <div class="w-full md:w-1/3 xl:w-1/3 p-5 max-w-[300px] flex flex-col border border-solid border-[#EBEBEB] rounded-md">
+        <img class="hover:grow hover:shadow-lg" src="./assets/img/three.jpg">
+        <div class="pt-3 flex items-center justify-between text-center">
+          <p class="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore sit facilis id repellendus doloremque
+            quos, cum, inventore optio totam voluptas dicta, soluta sed ipsum quas consequatur similique</p>
+        </div>
+        <div class="button mt-6">
+          <a class="link uppercase tracking-[.10em] font-medium text-sm" href="#">Read More</a>
+        </div>
+      </div>
+
+  
+    </div>
+    
+    <!--TABS-->
+    <div id="app" class="w-full mx-auto container">
+      <div class="sm:hidden">
+        <!-- Mobile Accordion -->
+        <div v-for="(tab, index) in tabs" :key="index">
+          <div @click="toggleActive(index)"
+            class="flex justify-between items-center bg-[#efefef] text-black py-2 px-4 cursor-pointer">
+            <span>{{ tab.title }}</span>
+            <span v-if="activeAccordion === index">&#8642;</span>
+            <span v-else>&#8640;</span>
+          </div>
+          <div v-show="activeAccordion === index" class="bg-gray-300 p-2" v-html="tab.content"></div>
+        </div>
+      </div>
+    
+      <div class="hidden sm:block">
+        <!-- Desktop Tabs -->
+        <div v-for="(tab, index) in tabs" :key="index" @click="toggleActive(index)"
+          :class="{ 'bg-[#efefef] text-black': isActive(index), 'cursor-pointer': true, 'bg-[#d7d7d7]': !isActive(index) }"
+          class="py-2 px-4 inline-block m-0">
+          {{ tab.title }}
+        </div>
+        <div v-show="activeTab !== -1" class="bg-[#efefef] p-5" v-html="tabs[activeTab]?.content">
+
+        </div>
+      </div>
+    
+      <div v-if="loading" class="text-center mt-4 text-gray-600">Loading...</div>
+      <div v-if="error" class="text-center mt-4 text-red-600">{{ error }}</div>
+    
+    </div>
+    <!--end tabs-->
+
+  </section>
+
+
+  </div>
+</body>
+
+<script src="./assets/js/script.js"></script>
+
+</html>
